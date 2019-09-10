@@ -37,7 +37,12 @@ public class EmployeeService implements IEmployee {
 
 	@Override
 	public Flux<Employee> findAll() {
-		logger.debug("flex-employee|EmployeeService|findAll()"); 		
+		logger.debug("flex-employee|EmployeeService|findAll()"); 	
+		try {
+			Thread.sleep(30000); // 5초 대기
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return repo.findAll();
 	}
 
