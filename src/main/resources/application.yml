@@ -16,9 +16,7 @@ spring:
     name: flex-employee
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: flex
+      uri: mongodb://localhost:27017/flex
    
 ---
 
@@ -36,6 +34,4 @@ spring:
     name: flex-employee
   data:
     mongodb:
-      host: ${MONGO_HOST}
-      port: ${MONGO_PORT}
-      database: ${MONGO_DATABASE}   
+      uri: mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}
