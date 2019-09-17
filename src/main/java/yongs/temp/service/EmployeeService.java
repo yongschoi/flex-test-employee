@@ -37,15 +37,10 @@ public class EmployeeService implements IEmployee {
 
 	@Override
 	public Flux<Employee> findAll() {
-		logger.debug("flex-employee|EmployeeService|findAll()"); 	
-		try {
-			Thread.sleep(30000); // 5초 대기
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		logger.debug("flex-employee|EmployeeService|findAll()");
 		return repo.findAll();
 	}
-
+	
 	@Override
 	public Mono<Employee> update(Employee e) {
 		logger.debug("flex-employee|EmployeeService|update()");
@@ -56,5 +51,16 @@ public class EmployeeService implements IEmployee {
 	public Mono<Void> delete(Integer id) {
 		logger.debug("flex-employee|EmployeeService|delete({})", id);
 		return repo.deleteById(id);
+	}
+	
+	@Override
+	public Flux<String> test() {
+		try {
+			Thread.sleep(5000);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return Flux.just("A", "B", "C", "D", "E");
 	}
 }

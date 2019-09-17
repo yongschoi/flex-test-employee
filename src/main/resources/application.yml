@@ -3,7 +3,7 @@ spring:
     active: window-dev
 ---
 server:
-  port: 0
+  port: 8081
 
 logging:
   level:
@@ -14,28 +14,12 @@ spring:
   profiles: window-dev
   application:
     name: flex-employee
-  sleuth:
-    sampler:
-      probability: 1
-  zipkin:
-    baseUrl: http://localhost:9411/
   data:
     mongodb:
       host: localhost
       port: 27017
       database: flex
-          
-eureka:
-  instance:
-    preferIpAddress: true
-    hostname: localhost
-  client:
-    registerWithEureka: true 
-    fetchRegistry: true
-    enabled: true
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/  
-      
+   
 ---
 
 server:
@@ -50,24 +34,8 @@ spring:
   profiles: docker-dev
   application:
     name: flex-employee
-  sleuth:
-    sampler:
-      probability: 1
-  zipkin:
-    baseUrl: http://zipkin-server:9411/
   data:
     mongodb:
-      host: flex-mongo-db
-      port: 27017
-      database: flex
-                         
-eureka:
-  instance:
-    preferIpAddress: true
-    hostname: eureka-server
-  client:
-    registerWithEureka: true 
-    fetchRegistry: true
-    enabled: true
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/     
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
+      database: ${MONGO_DATABASE}   

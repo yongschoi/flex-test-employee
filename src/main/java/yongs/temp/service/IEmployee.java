@@ -11,4 +11,5 @@ public interface IEmployee {
     Flux<Employee> findAll();
     Mono<Employee> update(Employee e);
     Mono<Void> delete(Integer id);
+    Flux<String> test();
 }

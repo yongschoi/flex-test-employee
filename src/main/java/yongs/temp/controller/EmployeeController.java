@@ -52,7 +52,7 @@ public class EmployeeController {
         Flux<Employee> emps = service.findAll();
         return emps;
     }
- 
+    
     @PutMapping("/employee/update")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Employee> update(@RequestBody Employee e) {
@@ -65,5 +65,10 @@ public class EmployeeController {
     public Mono<Void> delete(@PathVariable("id") Integer id) {
     	logger.debug("flex-employee|EmployeeController|delete({})", id);      	
         return service.delete(id);
+    }
+    
+    @GetMapping("/test")
+    public Flux<String> test() {
+        return service.test();
     }
 }
